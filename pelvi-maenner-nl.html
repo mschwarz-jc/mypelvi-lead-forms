@@ -1,0 +1,465 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MyPelvi – Bekkenbodemtraining voor mannen</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=PT+Serif:wght@700&family=Montserrat:wght@400;500;600&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'Montserrat', Helvetica, Arial, sans-serif;
+      background: #FFFFFF;
+      color: #333333;
+      font-size: 16px;
+      line-height: 1.6;
+    }
+
+    /* ── HEADER ── */
+    .site-header {
+      background: #FFFFFF;
+      border-bottom: 1px solid #E8E2D9;
+      padding: 16px 24px;
+      text-align: center;
+    }
+    .logo {
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 600;
+      font-size: 1.5rem;
+      color: #333333;
+      letter-spacing: -0.02em;
+      text-decoration: none;
+    }
+    .logo span {
+      display: inline-block;
+      width: 8px;
+      height: 8px;
+      background: #FFC107;
+      border-radius: 50%;
+      margin-left: 1px;
+      vertical-align: middle;
+      position: relative;
+      top: -2px;
+    }
+
+    /* ── HERO IMAGE ── */
+    .hero {
+      width: 100%;
+      max-height: 480px;
+      overflow: hidden;
+      position: relative;
+    }
+    .hero img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center 20%;
+      display: block;
+    }
+    .hero-overlay {
+      position: absolute;
+      bottom: 0; left: 0; right: 0;
+      background: linear-gradient(to top, rgba(51,51,51,0.72) 0%, transparent 100%);
+      padding: 40px 28px 28px;
+      color: #FFFFFF;
+    }
+    .hero-label {
+      font-size: 0.72rem;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: #FFC107;
+      margin-bottom: 8px;
+    }
+    .hero-title {
+      font-family: 'PT Serif', Georgia, serif;
+      font-size: clamp(1.5rem, 4vw, 2rem);
+      font-weight: 700;
+      line-height: 1.2;
+      color: #FFFFFF;
+    }
+
+    /* ── FORM CONTAINER ── */
+    .form-wrap {
+      max-width: 640px;
+      margin: 0 auto;
+      padding: 40px 24px 60px;
+    }
+
+    /* ── QUESTION BLOCK ── */
+    .q-block {
+      margin-bottom: 36px;
+    }
+    .q-number {
+      font-size: 0.7rem;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: #FFC107;
+      margin-bottom: 8px;
+    }
+    .q-text {
+      font-family: 'PT Serif', Georgia, serif;
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: #333333;
+      margin-bottom: 6px;
+      line-height: 1.4;
+    }
+    .q-hint {
+      font-size: 0.78rem;
+      color: #888;
+      margin-bottom: 16px;
+      font-style: italic;
+    }
+
+    /* ── OPTIONS ── */
+    .opt-list {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+    .opt {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 14px 16px;
+      border: 1.5px solid #E8E2D9;
+      border-radius: 10px;
+      background: #FAFAF8;
+      cursor: pointer;
+      transition: border-color 0.18s, background 0.18s;
+      font-size: 0.93rem;
+      color: #333333;
+    }
+    .opt:hover {
+      border-color: #FFC107;
+      background: #FFFBEE;
+    }
+    .opt input[type="checkbox"],
+    .opt input[type="radio"] {
+      width: 18px;
+      height: 18px;
+      accent-color: #FFC107;
+      flex-shrink: 0;
+      cursor: pointer;
+    }
+    .opt label {
+      cursor: pointer;
+      line-height: 1.45;
+    }
+
+    /* ── DIVIDER ── */
+    .divider {
+      border: none;
+      border-top: 1px solid #EEE8E0;
+      margin: 36px 0;
+    }
+
+    /* ── CONTACT SECTION ── */
+    .contact-head {
+      font-family: 'PT Serif', Georgia, serif;
+      font-size: 1.15rem;
+      font-weight: 700;
+      color: #333333;
+      margin-bottom: 6px;
+    }
+    .contact-sub {
+      font-size: 0.82rem;
+      color: #777;
+      margin-bottom: 20px;
+      line-height: 1.55;
+    }
+    .contact-sub strong { color: #333; }
+    .form-field {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      margin-bottom: 14px;
+    }
+    .form-field label {
+      font-size: 0.82rem;
+      font-weight: 600;
+      color: #555;
+    }
+    .form-field input {
+      padding: 13px 14px;
+      border: 1.5px solid #E0DAD0;
+      border-radius: 8px;
+      font-size: 0.95rem;
+      font-family: inherit;
+      color: #333;
+      background: #FAFAF8;
+      outline: none;
+      transition: border-color 0.18s;
+    }
+    .form-field input:focus { border-color: #FFC107; }
+    .form-field input::placeholder { color: #BBB; font-style: italic; font-size: 0.88rem; }
+
+    /* ── PRIVACY ── */
+    .privacy-box {
+      background: #F7F4EE;
+      border: 1px solid #EEE8E0;
+      border-radius: 8px;
+      padding: 16px;
+      font-size: 0.75rem;
+      color: #888;
+      line-height: 1.65;
+      margin: 20px 0 24px;
+    }
+    .privacy-box a { color: #FFC107; text-decoration: underline; }
+
+    /* ── SUBMIT BUTTON ── */
+    .btn-submit {
+      width: 100%;
+      padding: 16px 28px;
+      background: #FFC107;
+      color: #333333;
+      border: none;
+      border-radius: 100px;
+      font-family: inherit;
+      font-size: 1rem;
+      font-weight: 700;
+      cursor: pointer;
+      transition: opacity 0.2s, transform 0.15s;
+      letter-spacing: 0.01em;
+    }
+    .btn-submit:hover { opacity: 0.88; transform: translateY(-1px); }
+
+    /* ── THANK YOU ── */
+    .thankyou {
+      display: none;
+      text-align: center;
+      padding: 56px 24px;
+      max-width: 480px;
+      margin: 0 auto;
+    }
+    .thankyou.show { display: block; }
+    .ty-emoji { font-size: 2.5rem; margin-bottom: 16px; }
+    .ty-title {
+      font-family: 'PT Serif', Georgia, serif;
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: #333;
+      margin-bottom: 12px;
+    }
+    .ty-body { font-size: 0.95rem; color: #666; line-height: 1.65; margin-bottom: 28px; }
+    .btn-website {
+      display: inline-block;
+      padding: 14px 32px;
+      background: #FFC107;
+      color: #333333;
+      border-radius: 100px;
+      font-weight: 700;
+      font-size: 0.95rem;
+      text-decoration: none;
+      transition: opacity 0.2s;
+    }
+    .btn-website:hover { opacity: 0.88; }
+
+    /* ── DISCLAIMER ── */
+    .disclaimer {
+      font-size: 0.72rem;
+      color: #AAA;
+      text-align: center;
+      margin-top: 32px;
+      line-height: 1.6;
+      padding: 0 8px;
+    }
+
+    @media (min-width: 640px) {
+      .hero { max-height: 560px; }
+      .hero-overlay { padding: 56px 40px 36px; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header class="site-header">
+  <a class="logo" href="#">mypelvi<span></span></a>
+</header>
+
+<!-- HERO -->
+<section class="hero">
+  <img src="hero-pelvi.jpeg" alt="MyPelvi bekkenbodemstoel voor mannen">
+  <div class="hero-overlay">
+    <p class="hero-label">Bekkenbodemtraining voor mannen</p>
+    <h1 class="hero-title">Ontdek wat MyPelvi<br>voor jou kan doen</h1>
+  </div>
+</section>
+
+<!-- FORM -->
+<main class="form-wrap" id="main-form">
+
+  <form id="lead-form" onsubmit="handleSubmit(event)" novalidate>
+
+    <!-- VRAAG 1 -->
+    <div class="q-block">
+      <p class="q-number">Vraag 1 van 3</p>
+      <p class="q-text">De MyPelvi-bekkenbodemstoel is veelzijdig inzetbaar. Wat is op dit moment het meest op jou van toepassing?</p>
+      <p class="q-hint">Meerdere antwoorden mogelijk</p>
+      <div class="opt-list">
+        <label class="opt">
+          <input type="checkbox" name="vraag1" value="verminderde-controle">
+          <span>Verminderde controle / onzekerheid in het dagelijks leven</span>
+        </label>
+        <label class="opt">
+          <input type="checkbox" name="vraag1" value="erectieproblemen">
+          <span>Erectieproblemen of verminderde standvastigheid</span>
+        </label>
+        <label class="opt">
+          <input type="checkbox" name="vraag1" value="libido">
+          <span>Verhoging van het libido</span>
+        </label>
+        <label class="opt">
+          <input type="checkbox" name="vraag1" value="versterking">
+          <span>Algemene versterking van de bekkenbodem</span>
+        </label>
+        <label class="opt">
+          <input type="checkbox" name="vraag1" value="urineverlies">
+          <span>Frequente aandrang om te plassen / ongewild urineverlies</span>
+        </label>
+        <label class="opt">
+          <input type="checkbox" name="vraag1" value="preventie">
+          <span>Preventie &amp; prestatieverbetering</span>
+        </label>
+      </div>
+    </div>
+
+    <hr class="divider">
+
+    <!-- VRAAG 2 -->
+    <div class="q-block">
+      <p class="q-number">Vraag 2 van 3</p>
+      <p class="q-text">Wat is jouw persoonlijke doel?</p>
+      <p class="q-hint">Meerdere antwoorden mogelijk</p>
+      <div class="opt-list">
+        <label class="opt">
+          <input type="checkbox" name="vraag2" value="meer-controle">
+          <span>Meer controle &amp; zekerheid in het dagelijks leven</span>
+        </label>
+        <label class="opt">
+          <input type="checkbox" name="vraag2" value="prestaties">
+          <span>Verbetering van de prestaties</span>
+        </label>
+        <label class="opt">
+          <input type="checkbox" name="vraag2" value="versterking-romp">
+          <span>Versterking van romp &amp; bekkenbodem</span>
+        </label>
+        <label class="opt">
+          <input type="checkbox" name="vraag2" value="preventief">
+          <span>Preventief iets doen voor mijn gezondheid</span>
+        </label>
+        <label class="opt">
+          <input type="checkbox" name="vraag2" value="arts">
+          <span>Aanbevolen door een arts</span>
+        </label>
+        <label class="opt">
+          <input type="checkbox" name="vraag2" value="weet-niet">
+          <span>Ik weet het nog niet precies</span>
+        </label>
+      </div>
+    </div>
+
+    <hr class="divider">
+
+    <!-- VRAAG 3 -->
+    <div class="q-block">
+      <p class="q-number">Vraag 3 van 3</p>
+      <p class="q-text">MyPelvi is een gerichte, medisch ondersteunde training. Sta je in principe open voor een gestructureerd trainingsprogramma?</p>
+      <div class="opt-list">
+        <label class="opt">
+          <input type="radio" name="vraag3" value="ja-gericht">
+          <span>Ja, ik wil gericht iets veranderen</span>
+        </label>
+        <label class="opt">
+          <input type="radio" name="vraag3" value="misschien-advies">
+          <span>Misschien, ik wil me laten adviseren</span>
+        </label>
+        <label class="opt">
+          <input type="radio" name="vraag3" value="meer-informatie">
+          <span>Ik ben op zoek naar meer algemene informatie</span>
+        </label>
+      </div>
+    </div>
+
+    <hr class="divider">
+
+    <!-- CONTACTGEGEVENS -->
+    <div class="q-block">
+      <p class="contact-head">Contactgegevens</p>
+      <p class="contact-sub">Vul hier je contactgegevens in. <strong>BELANGRIJK: je gegevens worden niet aan derden doorgegeven!</strong></p>
+
+      <div class="form-field">
+        <label for="naam">Volledige naam</label>
+        <input type="text" id="naam" name="naam" placeholder="Voer je antwoord in." required>
+      </div>
+      <div class="form-field">
+        <label for="telefoon">Telefoonnummer</label>
+        <input type="tel" id="telefoon" name="telefoon" placeholder="Voer je antwoord in." required>
+      </div>
+      <div class="form-field">
+        <label for="email">E-mailadres</label>
+        <input type="email" id="email" name="email" placeholder="Voer je antwoord in." required>
+      </div>
+    </div>
+
+    <!-- PRIVACY -->
+    <div class="privacy-box">
+      Door op <strong>Verzenden</strong> te klikken, ga je ermee akkoord dat je gegevens naar MyPelvi worden verzonden, die ermee akkoord gaat om deze te gebruiken in overeenstemming met het eigen privacybeleid. Facebook gebruikt je gegevens ook, in overeenstemming met ons gegevensbeleid, onder andere om automatisch formulieren in te vullen voor advertenties.<br><br>
+      <a href="#">Het gegevensbeleid van Facebook weergeven.</a><br>
+      <a href="#">Ga naar het privacybeleid van MyPelvi.</a>
+    </div>
+
+    <button type="submit" class="btn-submit">Verzenden</button>
+
+  </form>
+
+  <!-- THANK YOU -->
+  <div class="thankyou" id="thankyou">
+    <div class="ty-emoji">🎉</div>
+    <h2 class="ty-title">Super – het is gelukt!</h2>
+    <p class="ty-body">We hebben je aanvraag ontvangen en nemen zo snel mogelijk telefonisch contact met je op.<br><br>Voor meer informatie over MyPelvi, klik op "Website bekijken".</p>
+    <a class="btn-website" href="#">Website bekijken</a>
+  </div>
+
+  <!-- DISCLAIMER -->
+  <p class="disclaimer">MyPelvi biedt geen medische therapie en stelt geen diagnoses. Bij twijfel over je gezondheid of klachten adviseren we je om contact op te nemen met je arts of bekkenfysiotherapeut.</p>
+
+</main>
+
+<script>
+  function handleSubmit(e) {
+    e.preventDefault();
+    document.getElementById('lead-form').style.display = 'none';
+    document.getElementById('thankyou').classList.add('show');
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+
+  // Highlight selected options
+  document.querySelectorAll('.opt input').forEach(function(inp) {
+    inp.addEventListener('change', function() {
+      var name = inp.getAttribute('name');
+      if (inp.type === 'radio') {
+        document.querySelectorAll('input[name="' + name + '"]').forEach(function(r) {
+          r.closest('.opt').style.borderColor = '';
+          r.closest('.opt').style.background = '';
+        });
+      }
+      if (inp.checked) {
+        inp.closest('.opt').style.borderColor = '#FFC107';
+        inp.closest('.opt').style.background = '#FFFBEE';
+      } else {
+        inp.closest('.opt').style.borderColor = '';
+        inp.closest('.opt').style.background = '';
+      }
+    });
+  });
+</script>
+
+</body>
+</html>
